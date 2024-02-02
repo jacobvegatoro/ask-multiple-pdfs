@@ -63,10 +63,9 @@ def handle_userinput(user_question):
             st.write(bot_template.replace(
                 "{{MSG}}", message.content), unsafe_allow_html=True)
 
-
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Chat with multiple PDFs",
+    st.set_page_config(page_title="Extrae información desde archivos PDF",
                        page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
@@ -75,17 +74,17 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Chat with multiple PDFs :books:")
-    user_question = st.text_input("Ask a question about your documents:")
+    st.header("Extrae información desde archivos PDF :books:")
+    user_question = st.text_input("Realiza una pregunta en base a tus documentos:")
     if user_question:
         handle_userinput(user_question)
 
     with st.sidebar:
-        st.subheader("Your documents")
+        st.subheader("Tus documentos")
         pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
-        if st.button("Process"):
-            with st.spinner("Processing"):
+            "Sube aqui tus archivos PDF y presiona el botón 'Procesar'", accept_multiple_files=True)
+        if st.button("Procesar"):
+            with st.spinner("Procesando"):
                 # get pdf text
                 raw_text = get_pdf_text(pdf_docs)
 
